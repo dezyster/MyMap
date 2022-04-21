@@ -48,7 +48,7 @@ public:
     const Key& getKey() const { return m_key; };
     void addNode(RBNode_ptr&, RBNode_ptr, Key);
     bool isKeyExist(const Key&) const;
-    void getSize(int&) const;
+    void getSize(size_t&) const;
 
     void copyElements(RBNode_ptr&);
 

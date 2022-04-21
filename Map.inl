@@ -6,7 +6,7 @@ Map<Key, Value>::Map(const std::initializer_list<std::pair<Key, Value>> &list)
     {
         if(!(this->contains(pair.first)))
         {
-            this->addNode(pair.first);
+            this->addKey(pair.first);
         }
         MapNode<Key,Value>::convertToMapNode(this->m_root)->getValueByKey(pair.first) = pair.second;
     }
@@ -78,7 +78,7 @@ Value& Map<Key, Value>::operator[](Key key)
 {
     if(!(this->contains(key)))
     {
-        this->addNode(key);
+        this->addKey(key);
     }
     return MapNode<Key,Value>::convertToMapNode(this->m_root)->getValueByKey(key);
 }
@@ -94,7 +94,7 @@ void Map<Key, Value>::insert(Key key, Value value)
 {
     if(!(this->contains(key)))
     {
-        this->addNode(key);
+        this->addKey(key);
         MapNode<Key,Value>::convertToMapNode(this->m_root)->getValueByKey(key) = value;
     }
 }
@@ -110,7 +110,7 @@ void Map<Key, Value>::insert_or_assign(Key key, Value value)
 {
     if(!(this->contains(key)))
     {
-        this->addNode(key);
+        this->addKey(key);
     }
     MapNode<Key,Value>::convertToMapNode(this->m_root)->getValueByKey(key) = value;
 }
@@ -126,8 +126,8 @@ typename Map<Key, Value>::iterator Map<Key, Value>::begin()
 {
     if(this->m_root)
     {
-        return iterator(MapNode<Key,Value>::convertToMapNode(this->m_root)->
-                        getMostLeft(MapNode<Key,Value>::convertToMapNode(this->m_root)));
+        const auto &tempMapRoot{ MapNode<Key,Value>::convertToMapNode(this->m_root) };
+        return iterator(tempMapRoot->getMostLeft(tempMapRoot));
     }
     else
     {
@@ -146,8 +146,8 @@ typename Map<Key, Value>::const_iterator Map<Key, Value>::begin() const
 {
     if(this->m_root)
     {
-        return const_iterator(MapNode<Key,Value>::convertToMapNode(this->m_root)->
-                              getMostLeft(MapNode<Key,Value>::convertToMapNode(this->m_root)));
+        const auto &tempMapRoot{ MapNode<Key,Value>::convertToMapNode(this->m_root) };
+        return const_iterator(tempMapRoot->getMostLeft(tempMapRoot));
     }
     else
     {

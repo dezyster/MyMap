@@ -19,7 +19,7 @@ void RBTreeBase<Key>::moveTree(RBTreeBase<Key> &&other)
 }
 
 template <typename Key>
-void RBTreeBase<Key>::addNode(Key key)
+void RBTreeBase<Key>::addKey(Key key)
 {
     if(m_root)
     {
@@ -51,18 +51,20 @@ void RBTreeBase<Key>::erase()
 }
 
 template <typename Key>
-int RBTreeBase<Key>::size() const
+size_t RBTreeBase<Key>::size() const
 {
     if(m_root)
     {
-        int treeSize{ 1 };
+        size_t treeSize{ 1 };
 
         m_root->getSize(treeSize);
 
         return treeSize;
     }
-
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 
 template <typename Key>

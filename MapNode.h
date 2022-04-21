@@ -10,18 +10,16 @@ class MapNode: public RBNodeBase<Key>
     Value m_value;
 
 protected:
-
     virtual void createNewNode(typename RBNodeBase<Key>::RBNode_ptr, Key, typename RBNodeBase<Key>::RBNode_ptr&) override;
-
     virtual void copyNode(typename RBNodeBase<Key>::RBNode_ptr&, typename RBNodeBase<Key>::RBNode_ptr, typename RBNodeBase<Key>::RBNode_ptr&) override;
 
 public:
+    MapNode(Key key): RBNodeBase<Key>(key), m_value{}{}
+    MapNode(Key key, typename RBNodeBase<Key>::RBNode_ptr node): RBNodeBase<Key>(key, node), m_value{}{}
+
     using MapNode_ptr = std::shared_ptr<MapNode<Key, Value>>;
 
     static MapNode_ptr convertToMapNode(typename RBNodeBase<Key>::RBNode_ptr);
-
-    MapNode(Key key): RBNodeBase<Key>(key), m_value{} {}
-    MapNode(Key key, typename RBNodeBase<Key>::RBNode_ptr node): RBNodeBase<Key>(key, node), m_value{} {}
 
     Value& getValueByKey(Key);
     const Key& getKey() const;

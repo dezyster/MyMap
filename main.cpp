@@ -1,5 +1,3 @@
-#include <utility>
-#include <string>
 #include <cstdlib>
 #include <ctime>
 
@@ -19,8 +17,8 @@ void checkTree()
 
     for(int i = 1; i <= 20; i++)
     {
-        tst.addNode(getRandomNumber(1,50000));
-        //tst.addNode(i);
+        tst.addKey(getRandomNumber(1,50000));
+        //tst.addKey(i);
     }
 
     //auto ptr = tst.begin();
@@ -29,7 +27,7 @@ void checkTree()
 
     std::cout << TreeInfoViewer::getBlackHeight(tst) << std::endl;
 
-    //TreeInfoViewer::printTreeInfo(tst);
+    TreeInfoViewer::printTreeInfo(tst);
     TreeInfoViewer::printBlackHeight(tst);
 
     //tst.printTreeInfo();
@@ -110,14 +108,14 @@ void checkEqualityOperatorRBTree()
     RBTree<int> tst;
     for(int i = 1; i <= 10; i++)
     {
-        tst.addNode(i);
+        tst.addKey(i);
     }
 
     RBTree<int> tst2(tst);
 
     /*for(int i = 1; i <= 5; i++)
     {
-        tst2.addNode(i);
+        tst2.addKey(i);
     }*/
 
     TreeInfoViewer::printTreeInfo(tst); std::cout << std::endl;
@@ -157,7 +155,7 @@ void checkEqualityOperatorMap()
 
     /*for(int i = 1; i <= 5; i++)
     {
-        tst2.addNode(i);
+        tst2.addKey(i);
     }*/
 
     TreeInfoViewer::printTreeInfo(testMap); std::cout << std::endl;
@@ -174,21 +172,14 @@ int main()
     srand(static_cast<unsigned int>(time(0)));
     rand();
 
-    //checkTree();
+    checkTree();
 
-    //checkMap();
+    checkMap();
 
-    //checkConstMap();
+    checkConstMap();
 
-
-    Map<int, int> testMap;
-
-
-    RBTree<int> tempTree(testMap) ;  // creates temp red-black tree and calls copy constructor with map
-    std::cout << tempTree.empty() << std::endl;
-
-    //checkEqualityOperatorRBTree();
-    //checkEqualityOperatorMap();
+    checkEqualityOperatorRBTree();
+    checkEqualityOperatorMap();
 
     return 0;
 }

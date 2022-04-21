@@ -10,7 +10,7 @@ RBTree<Key>::RBTree(const std::initializer_list<Key> &list)
 {
     for(auto &key: list)
     {
-        this->addNode(key);
+        this->addKey(key);
     }
 }
 

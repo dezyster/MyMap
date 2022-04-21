@@ -15,7 +15,7 @@ public:
     {
         for(int i = 0; i < 10000; ++i)
         {
-            bigSizedTree.addNode(i); // adds 10000 elements to bigSizedTree
+            bigSizedTree.addKey(i); // adds 10000 elements to bigSizedTree
         }
     }
     void TearDown()

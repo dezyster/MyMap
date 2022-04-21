@@ -206,7 +206,7 @@ bool RBNodeBase<Key>::isKeyExist(const Key &key) const
 }
 
 template <typename Key>
-void RBNodeBase<Key>::getSize(int &size) const
+void RBNodeBase<Key>::getSize(size_t &size) const
 {
     if(m_left)
     {
@@ -229,6 +229,4 @@ void RBNodeBase<Key>::copyElements(RBNode_ptr &othersPrev)
     {
         copyNode(othersPrev, m_right, othersPrev->m_right);
     }
-
 }
-

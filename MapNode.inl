@@ -1,9 +1,20 @@
-
 template <typename Key, typename Value>
 void MapNode<Key, Value>::createNewNode(typename RBNodeBase<Key>::RBNode_ptr shared_this, Key key,
                                         typename RBNodeBase<Key>::RBNode_ptr &node)
 {
     node = std::make_shared<MapNode<Key, Value>>(key, shared_this);
+}
+
+template <typename Key, typename Value>
+void MapNode<Key, Value>::copyNode(typename RBNodeBase<Key>::RBNode_ptr &OthersPrev,
+                                   typename RBNodeBase<Key>::RBNode_ptr nodeToCopyFrom,
+                                   typename RBNodeBase<Key>::RBNode_ptr &othersNode)
+{
+    this->createNewNode(OthersPrev, nodeToCopyFrom->getKey(), othersNode);
+
+    convertToMapNode(othersNode)->m_value = convertToMapNode(nodeToCopyFrom)->m_value;
+
+    nodeToCopyFrom->copyElements(othersNode);
 }
 
 template <typename Key, typename Value>
@@ -41,25 +52,13 @@ Value& MapNode<Key, Value>::getValue()
     return this->m_value;
 }
 
-template <typename Key, typename Value>
-void MapNode<Key, Value>::copyNode(typename RBNodeBase<Key>::RBNode_ptr &OthersPrev,
-              typename RBNodeBase<Key>::RBNode_ptr nodeToCopyFrom,
-              typename RBNodeBase<Key>::RBNode_ptr &othersNode)
-{
-    this->createNewNode(OthersPrev, nodeToCopyFrom->getKey(), othersNode);
-
-    convertToMapNode(othersNode)->m_value = convertToMapNode(nodeToCopyFrom)->m_value;
-
-    nodeToCopyFrom->copyElements(othersNode);
-}
-
 /****************  Iterators zone   *****************/
 template <typename Key, typename Value>
 typename MapNode<Key, Value>::MapNode_ptr MapNode<Key, Value>::getMostLeft(MapNode_ptr shared_this)
 {
     if(this->m_left)
     {
-        const auto& convertedLeft = convertToMapNode(this->m_left);
+        const auto &convertedLeft{ convertToMapNode(this->m_left) };
         return convertedLeft->getMostLeft(convertedLeft);
     }
     else
@@ -73,7 +72,7 @@ typename MapNode<Key, Value>::MapNode_ptr MapNode<Key, Value>::findSuitableParen
 {
     if(this->m_parent.lock())
     {
-        const auto& convertedParent = convertToMapNode(this->m_parent.lock());
+        const auto &convertedParent{ convertToMapNode(this->m_parent.lock()) };
         if(convertedParent->m_right == shared_this)
         {
             return convertedParent->findSuitableParent(convertedParent);
@@ -94,7 +93,7 @@ typename MapNode<Key, Value>::MapNode_ptr MapNode<Key, Value>::getNextNode(MapNo
 {
     if(this->m_right)
     {
-        const auto& convertedRight = convertToMapNode(this->m_right);
+        const auto &convertedRight{ convertToMapNode(this->m_right) };
         return convertedRight->getMostLeft(convertedRight);
     }
     else if(this->m_parent.lock())

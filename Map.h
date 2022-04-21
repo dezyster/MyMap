@@ -1,5 +1,7 @@
 #pragma once
 
+#include <initializer_list>
+
 #include "RBTreeBase.h"
 #include "MapNode.h"
 #include "MapIterator.h"
@@ -7,8 +9,6 @@
 template <class Key, class Value>
 class Map: public RBTreeBase<Key>
 {
-    friend class TreeInfoViewer; // Needed to gain access to Info Viewer
-
     virtual void createRoot(Key) override;
 
     void copyMap(const Map<Key, Value>&);

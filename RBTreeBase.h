@@ -1,7 +1,5 @@
 #pragma once
 
-#include <initializer_list>
-
 #include "RBNodeBase.h"
 
 template <class Key>
@@ -13,16 +11,17 @@ protected:
     typename RBNodeBase<Key>::RBNode_ptr m_root;
 
     virtual void createRoot(Key) = 0;
-    void moveTree(RBTreeBase<Key>&&);
+
     void copyTree(const RBTreeBase<Key>&);
+    void moveTree(RBTreeBase<Key>&&);
 
 public:
     RBTreeBase(): m_root{ nullptr }{};
 
-    void addNode(Key);
+    void addKey(Key);
     bool contains(const Key&) const;
     void erase();
-    int size() const;
+    size_t size() const;
     bool empty() const;
 
     virtual ~RBTreeBase() = default;
