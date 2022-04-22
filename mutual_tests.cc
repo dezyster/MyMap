@@ -43,6 +43,9 @@ TEST_F(MapFromTreeTest, CopyConstructorFromDifferentTreeTests)
     EXPECT_EQ(bigSizedMap.size(), 10000); // expects bigSizedMap size to be 10000
     EXPECT_TRUE(bigSizedMap.contains(555)); // expects bigSizedMap to contain element 555
 
+    //bigSizedMap[555] = 789;
+    //EXPECT_EQ(bigSizedMap[555], 789); // expects bigSizedMap's element with key 555 to have value 789
+
     const Map<int, int> constMap(constTree); //creates const map with copy constructor from const RBTree
 
     EXPECT_EQ(constMap.size(), 6); // expects constMap size to be 6
@@ -105,7 +108,7 @@ TEST_F(TreeFromMapTest, CopyConstructorFromDifferentTreeTests)
     const RBTree<int> constTree(constMap); //creates const RBTree with copy constructor from const Map
 
     EXPECT_EQ(constTree.size(), 6); // expects constTree size to be 6
-    EXPECT_TRUE(constTree.contains(6)); // expects constTree to contain element 17
+    EXPECT_TRUE(constTree.contains(6)); // expects constTree to contain element 17*/
 }
 
 TEST_F(TreeFromMapTest, CopyEqualityOperatorFromDifferentTreeTests)
