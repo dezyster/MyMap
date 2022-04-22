@@ -1,14 +1,11 @@
 template <typename Key>
 void RBTreeBase<Key>::copyTree(const RBTreeBase<Key> &other)
 {
+    m_root = nullptr;
     if(other.m_root)
     {
         createRoot(other.m_root->getKey());
         other.m_root->copyElements(m_root);
-    }
-    else
-    {
-        m_root = nullptr;
     }
 }
 

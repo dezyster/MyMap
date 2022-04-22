@@ -11,7 +11,6 @@ class MapNode: public RBNodeBase<Key>
 
 protected:
     virtual void createNewNode(typename RBNodeBase<Key>::RBNode_ptr, Key, typename RBNodeBase<Key>::RBNode_ptr&) override;
-    virtual void copyNode(typename RBNodeBase<Key>::RBNode_ptr&, typename RBNodeBase<Key>::RBNode_ptr, typename RBNodeBase<Key>::RBNode_ptr&) override;
 
 public:
     MapNode(Key key): RBNodeBase<Key>(key), m_value{}{}

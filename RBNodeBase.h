@@ -25,9 +25,10 @@ protected:
     RBNode_ptr m_left;
     RBNode_ptr m_right;
 
+public:
     virtual void createNewNode(RBNode_ptr, Key, RBNode_ptr&) = 0;
-    virtual void copyNode(RBNode_ptr&, RBNode_ptr, RBNode_ptr&) = 0;
 
+protected:
     void swapParents(RBNode_ptr&, RBNode_ptr, RBNode_ptr&);
     void moveOtherNode(RBNode_ptr, RBNode_ptr&, RBNode_ptr&);
     void makeRoll(RBNode_ptr&, RBNode_ptr, RBNode_ptr&, RBNode_ptr&);
@@ -40,6 +41,8 @@ protected:
     void checkRBRules(RBNode_ptr&, RBNode_ptr, RBNode_ptr&);
     void startBalancing(RBNode_ptr&, RBNode_ptr);
     void addToNode(RBNode_ptr&, RBNode_ptr, Key, RBNode_ptr&);
+
+    void copyNode(RBNode_ptr&, RBNode_ptr, RBNode_ptr&);
 
 public:
     RBNodeBase(Key);

@@ -219,6 +219,13 @@ void RBNodeBase<Key>::getSize(size_t &size) const
 }
 
 template <typename Key>
+void RBNodeBase<Key>::copyNode(RBNode_ptr &othersPrev, RBNode_ptr nodeToCopyFrom, RBNode_ptr &othersNode)
+{
+    othersPrev->createNewNode(othersPrev, nodeToCopyFrom->getKey(), othersNode);
+    nodeToCopyFrom->copyElements(othersNode);
+}
+
+template <typename Key>
 void RBNodeBase<Key>::copyElements(RBNode_ptr &othersPrev)
 {
     if(m_left)

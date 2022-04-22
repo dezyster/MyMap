@@ -16,9 +16,9 @@ template <typename Key, typename Value>
 void Map<Key, Value>::copyMap(const Map<Key, Value> &other)
 {
     this->copyTree(other);
-    if(this->m_root)
+    for(const auto &otherIt: other)
     {
-        MapNode<Key,Value>::convertToMapNode(this->m_root)->getValue() = MapNode<Key,Value>::convertToMapNode(other.m_root)->getValue();
+        MapNode<Key,Value>::convertToMapNode(this->m_root)->getValueByKey(otherIt.first) = otherIt.second;
     }
 }
 

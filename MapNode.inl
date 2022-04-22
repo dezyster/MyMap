@@ -6,18 +6,6 @@ void MapNode<Key, Value>::createNewNode(typename RBNodeBase<Key>::RBNode_ptr sha
 }
 
 template <typename Key, typename Value>
-void MapNode<Key, Value>::copyNode(typename RBNodeBase<Key>::RBNode_ptr &OthersPrev,
-                                   typename RBNodeBase<Key>::RBNode_ptr nodeToCopyFrom,
-                                   typename RBNodeBase<Key>::RBNode_ptr &othersNode)
-{
-    this->createNewNode(OthersPrev, nodeToCopyFrom->getKey(), othersNode);
-
-    convertToMapNode(othersNode)->m_value = convertToMapNode(nodeToCopyFrom)->m_value;
-
-    nodeToCopyFrom->copyElements(othersNode);
-}
-
-template <typename Key, typename Value>
 typename MapNode<Key, Value>::MapNode_ptr MapNode<Key, Value>::convertToMapNode(typename RBNodeBase<Key>::RBNode_ptr rbNode)
 {
     return std::dynamic_pointer_cast<MapNode<Key, Value>>(rbNode);
