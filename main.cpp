@@ -13,54 +13,52 @@ int getRandomNumber(int min, int max)
 
 void checkTree()
 {
-    RBTree<int> tst;
+    std::cout << "----- RBTree -----" << std::endl;
+
+    RBTree<int> testRBTree;
 
     for(int i = 1; i <= 20; i++)
     {
-        tst.addKey(getRandomNumber(1,50000));
-        //tst.addKey(i);
+        testRBTree.addKey(getRandomNumber(1,100));
     }
 
-    //auto ptr = tst.begin();
+    std::cout << TreeInfoViewer::getBlackHeight(testRBTree) << std::endl;
 
-    //tst.erase();
+    TreeInfoViewer::printTreeInfo(testRBTree);
+    TreeInfoViewer::printBlackHeight(testRBTree);
 
-    std::cout << TreeInfoViewer::getBlackHeight(tst) << std::endl;
+    std::cout << testRBTree.empty() << std::endl;
 
-    TreeInfoViewer::printTreeInfo(tst);
-    TreeInfoViewer::printBlackHeight(tst);
-
-    //tst.printTreeInfo();
-    //tst.checkTree();
-
-    //std::cout << tst.empty();
+    std::cout << "----- ------ -----" << std::endl;
 }
 
 void checkConstMap()
 {
+    std::cout << "----- CONST MAP -----" << std::endl;
+
     const Map<int, int> testMap { {1,11}, {2,22}, {3,33}, {4,44}, {5,55}};
 
-    auto a = testMap.begin();
+    auto a{ testMap.begin() };
     ++a;
 
     auto b { a };
     std::cout << b->second << std::endl << std::endl;
 
-
-    for(auto it: testMap)
-    {
-        //it.second = 2;
-        std::cout << it.second << std::endl;
-    }
-
     std::cout << testMap.contains(6) << std::endl;
     std::cout << testMap[5] << std::endl;
     std::cout << testMap.empty() << std::endl;
     std::cout << testMap.size() << std::endl;
+
+    TreeInfoViewer::printTreeInfo(testMap);
+    TreeInfoViewer::printBlackHeight(testMap);
+
+   std::cout << "----- --------- -----" << std::endl;
 }
 
 void checkMap()
 {
+    std::cout << "----- Map -----" << std::endl;
+
     Map<int, int> testMap;
 
     testMap[1] = 11;
@@ -69,14 +67,10 @@ void checkMap()
     testMap[4] = 44;
     testMap[5] = 55;
 
-    testMap.insert(std::make_pair(6,9));
+    testMap.insert(std::make_pair(6,99));
 
     TreeInfoViewer::printTreeInfo(testMap);
     TreeInfoViewer::printBlackHeight(testMap);
-
-
-    std::cout << std::boolalpha << TreeInfoViewer::checkBlackHeight(testMap) << std::endl;
-    std::cout << TreeInfoViewer::getBlackHeight(testMap) << std::endl;
 
     std::cout << testMap.contains(6) << std::endl;
     std::cout << testMap[6] << std::endl;
@@ -94,34 +88,27 @@ void checkMap()
     }
 
     auto a = testMap.begin();
-
     ++a;
+    a->second = 55;
+    std::cout << std::endl << a->second << std::endl;
 
-    //std::cout << (*a).getValueByKey(1) << std::endl;
-    //(*a).second = 55;
-    //std::cout << (*a).second << std::endl;*/
+    std::cout << "----- --- -----" << std::endl;
 }
 
 void checkEqualityOperatorRBTree()
 {
+    std::cout << "----- RBTree copy -----" << std::endl;
 
-    RBTree<int> tst;
+    RBTree<int> testRBTree;
     for(int i = 1; i <= 10; i++)
     {
-        tst.addKey(i);
+        testRBTree.addKey(i);
     }
 
-    RBTree<int> tst2(tst);
+    RBTree<int> testRBTree2(testRBTree);
 
-    /*for(int i = 1; i <= 5; i++)
-    {
-        tst2.addKey(i);
-    }*/
-
-    TreeInfoViewer::printTreeInfo(tst); std::cout << std::endl;
-    TreeInfoViewer::printTreeInfo(tst2); std::cout << std::endl;
-
-    //tst2 = std::move(tst);
+    TreeInfoViewer::printTreeInfo(testRBTree); std::cout << std::endl;
+    TreeInfoViewer::printTreeInfo(testRBTree2); std::cout << std::endl;
 
     Map<int, int> testMap;
 
@@ -131,16 +118,17 @@ void checkEqualityOperatorRBTree()
     testMap[4] = 44;
     testMap[5] = 55;
 
-    tst2 = testMap;
+    testRBTree2 = testMap;
 
+    TreeInfoViewer::printTreeInfo(testRBTree2); std::cout << std::endl;
 
-
-    TreeInfoViewer::printTreeInfo(tst2); std::cout << std::endl;
-    TreeInfoViewer::printTreeInfo(tst); std::cout << std::endl;
+    std::cout << "----- ----------- -----" << std::endl;
 }
 
 void checkEqualityOperatorMap()
 {
+    std::cout << "----- Map copy -----" << std::endl;
+
     Map<int, int> testMap;
 
     testMap[1] = 11;
@@ -151,20 +139,19 @@ void checkEqualityOperatorMap()
 
     Map<int, int> testMap2;
 
-    testMap2 = std::move(testMap);
-
-    /*for(int i = 1; i <= 5; i++)
-    {
-        tst2.addKey(i);
-    }*/
-
     TreeInfoViewer::printTreeInfo(testMap); std::cout << std::endl;
     TreeInfoViewer::printTreeInfo(testMap2); std::cout << std::endl;
 
-    /*tst2 = std::move(tst);
+    RBTree<int> testRBTree;
+    for(int i = 50; i <= 60; i++)
+    {
+        testRBTree.addKey(i);
+    }
 
-    TreeInfoViewer::printTreeInfo(tst2);
-    TreeInfoViewer::printTreeInfo(tst);*/
+    testMap2 = testRBTree;
+    TreeInfoViewer::printTreeInfo(testMap2); std::cout << std::endl;
+
+    std::cout << "----- -------- -----" << std::endl;
 }
 
 int main()
@@ -172,13 +159,14 @@ int main()
     srand(static_cast<unsigned int>(time(0)));
     rand();
 
-    checkTree();
+    //checkTree();
 
-    checkMap();
+    //checkMap();
 
-    checkConstMap();
+    //checkConstMap();
 
     checkEqualityOperatorRBTree();
+
     checkEqualityOperatorMap();
 
     return 0;
