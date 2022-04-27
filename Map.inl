@@ -1,6 +1,5 @@
 template <typename Key, typename Value>
-Map<Key, Value>::Map(const std::initializer_list<std::pair<Key, Value>> &list)
-    :RBTreeBase<Key>()
+Map<Key, Value>::Map(const std::initializer_list<std::pair<Key, Value>> &list): RBTreeBase<Key>()
 {
     for(auto &pair : list)
     {
@@ -23,22 +22,19 @@ void Map<Key, Value>::copyMap(const Map<Key, Value> &other)
 }
 
 template <typename Key, typename Value>
-Map<Key, Value>::Map(const Map<Key, Value> &other)
-    :RBTreeBase<Key>()
+Map<Key, Value>::Map(const Map<Key, Value> &other): RBTreeBase<Key>()
 {
     copyMap(other);
 }
 
 template <typename Key, typename Value>
-Map<Key, Value>::Map(const RBTreeBase<Key> &other)
-    :RBTreeBase<Key>()
+Map<Key, Value>::Map(const RBTreeBase<Key> &other): RBTreeBase<Key>()
 {
     this->copyTree(other);
 }
 
 template <typename Key, typename Value>
-Map<Key, Value>::Map(Map<Key, Value> &&other)
-    :RBTreeBase<Key>()
+Map<Key, Value>::Map(Map<Key, Value> &&other): RBTreeBase<Key>()
 {
     this->moveTree(dynamic_cast<RBTreeBase<Key>&&>(other));
 }

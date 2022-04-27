@@ -1,4 +1,3 @@
-
 template <typename Key>
 void TreeInfoViewer::printRBNodeKeyAndColor(typename RBNodeBase<Key>::RBNode_ptr rbNode)
 {
