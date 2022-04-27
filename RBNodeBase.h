@@ -2,8 +2,6 @@
 
 #include <memory>
 
-class TreeInfoViewer;
-
 template <class Key>
 class RBNodeBase
 {
