@@ -2,18 +2,20 @@
 
 #include "TreeInfoViewer.h"
 
-class RBtreeTest: public ::testing::Test {
-public:
-    RBtreeTest():
-        emptyTree{}, bigSizedTree{}, constTree{10,6,9,13,17,15} // initialize trees
-    {
+class RBtreeTest: public ::testing::Test
+{
+protected:
+    RBTree<int> emptyTree;  // blank red-black tree
+    RBTree<int> bigSizedTree;  // big-sized red-black tree
+    const RBTree<int> constTree;  // const tree
 
-    }
+public:
+    RBtreeTest(): emptyTree{}, bigSizedTree{}, constTree{10,6,9,13,17,15}{} // initialize trees
     ~RBtreeTest() = default;
 
     void SetUp()
     {
-        for(int i = 0; i < 10000; ++i)
+        for(int i{0}; i < 10000; ++i)
         {
             bigSizedTree.addKey(i); // adds 10000 elements to bigSizedTree
         }
@@ -23,11 +25,6 @@ public:
         emptyTree = RBTree<int>{}; // make emptyTree a blank tree
         bigSizedTree = RBTree<int>{}; // make bigSizedTree a blank tree
     }
-
-protected:
-    RBTree<int> emptyTree;  // blank red-black tree
-    RBTree<int> bigSizedTree;  // big-sized red-black tree
-    const RBTree<int> constTree;  // const tree
 };
 
 TEST_F(RBtreeTest, sizeTest)

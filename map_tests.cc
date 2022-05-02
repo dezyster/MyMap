@@ -2,18 +2,20 @@
 
 #include "Map.h"
 
-class MapTest: public ::testing::Test {
-public:
-    MapTest():
-        emptyMap{}, bigSizedMap{}, constMap{ {1,11}, {2,22}, {3,33}, {4,44}, {5,55}, {6,66} } // initialize maps
-    {
+class MapTest: public ::testing::Test
+{
+protected:
+    Map<int, int> emptyMap;  // blank map
+    Map<int, int> bigSizedMap;  // big-sized map
+    const Map<int, int> constMap;  // const map
 
-    }
+public:
+    MapTest(): emptyMap{}, bigSizedMap{}, constMap{ {1,11}, {2,22}, {3,33}, {4,44}, {5,55}, {6,66} }{} // initialize maps
     ~MapTest() = default;
 
     void SetUp()
     {
-        for(int i = 0; i < 10000; ++i)
+        for(int i{0}; i < 10000; ++i)
         {
             bigSizedMap[i] = i * 11; // adds 10000 elements to bigSizedMap
         }
@@ -23,11 +25,6 @@ public:
         emptyMap = Map<int, int>{}; // make emptyMap a blank map
         bigSizedMap = Map<int, int>{}; // make bigSizedMap a blank map
     }
-
-protected:
-    Map<int, int> emptyMap;  // blank map
-    Map<int, int> bigSizedMap;  // big-sized map
-    const Map<int, int> constMap;  // const map
 };
 
 TEST_F(MapTest, sizeTest)
@@ -156,17 +153,17 @@ TEST_F(MapTest, MoveCopyConstructorTests)
 
 TEST_F(MapTest, CopyEqualityOperatorTests)
 {
-    Map<int, int> tempemptyMap;  // creates temp blank red-black map
-    tempemptyMap = emptyMap; // calls copy equality operator
+    Map<int, int> tempEmptyMap;  // creates temp blank red-black map
+    tempEmptyMap = emptyMap; // calls copy equality operator
 
-    EXPECT_TRUE(tempemptyMap.empty()); // expects tempEmptyMap to be empty
+    EXPECT_TRUE(tempEmptyMap.empty()); // expects tempEmptyMap to be empty
     EXPECT_TRUE(emptyMap.empty()); // expects emptyMap to be empty
 
-    Map<int, int> tempbigSizedMap;  // creates temp big-sized red-black map
-    tempbigSizedMap = bigSizedMap; // calls copy equality operator
+    Map<int, int> tempBigSizedMap;  // creates temp big-sized red-black map
+    tempBigSizedMap = bigSizedMap; // calls copy equality operator
 
-    EXPECT_EQ(tempbigSizedMap.size(), 10000); // expects tempBigSizedMap size to be 10000
-    EXPECT_TRUE(tempbigSizedMap.contains(6)); // expects tempBigSizedMap to contain element 555
+    EXPECT_EQ(tempBigSizedMap.size(), 10000); // expects tempBigSizedMap size to be 10000
+    EXPECT_TRUE(tempBigSizedMap.contains(6)); // expects tempBigSizedMap to contain element 555
 }
 
 TEST_F(MapTest, MoveEqualityOperatorTests)
@@ -177,9 +174,9 @@ TEST_F(MapTest, MoveEqualityOperatorTests)
     EXPECT_TRUE(tempemptyMap.empty()); // expects tempEmptyMap to be empty
     EXPECT_TRUE(emptyMap.empty()); // expects emptyMap to be empty
 
-    Map<int, int> tempbigSizedMap;  // creates temp big-sized red-black map
-    tempbigSizedMap = std::move(bigSizedMap); // calls move equality operator
+    Map<int, int> tempBigSizedMap;  // creates temp big-sized red-black map
+    tempBigSizedMap = std::move(bigSizedMap); // calls move equality operator
 
-    EXPECT_EQ(tempbigSizedMap.size(), 10000); // expects tempBigSizedMap size to be 10000
+    EXPECT_EQ(tempBigSizedMap.size(), 10000); // expects tempBigSizedMap size to be 10000
     EXPECT_TRUE(bigSizedMap.empty()); // expects bigSizedMap to be empty
 }

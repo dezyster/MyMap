@@ -91,7 +91,7 @@ void checkMap()
     Map<MyClass, MyClass> testMap;
 
     testMap[1] = 11;
-    testMap[2] = 22;
+    testMap.insert(2,22);
     testMap[3] = 33;
     testMap[4] = 44;
     testMap[5] = 55;

@@ -74,23 +74,6 @@ void RBNodeBase<Key>::rollLeft(RBNode_ptr &root, RBNode_ptr shared_this)
 }
 
 template <typename Key>
-bool RBNodeBase<Key>::tryRecolor()
-{
-    if(m_left && m_right)
-    {
-        if(m_left->m_color == Colors::red && m_right->m_color == Colors::red)
-        {
-            m_left-> m_color = Colors::black;
-            m_right->m_color = Colors::black;
-            m_color = Colors::red;
-
-            return 1; //success
-        }
-    }
-    return 0; //fail
-}
-
-template <typename Key>
 bool RBNodeBase<Key>::isNodeRed(RBNode_ptr node)
 {
     if(node)
@@ -98,12 +81,6 @@ bool RBNodeBase<Key>::isNodeRed(RBNode_ptr node)
         return node->m_color == Colors::red;
     }
     return false;
-}
-
-template <typename Key>
-bool RBNodeBase<Key>::hasRedChilds()
-{
-    return isNodeRed(m_right) || isNodeRed(m_left);
 }
 
 template <typename Key>
@@ -125,6 +102,29 @@ void RBNodeBase<Key>::rollTree(RBNode_ptr &root, RBNode_ptr shared_this, RBNode_
         }
         rollLeft(root, shared_this);
     }
+}
+
+template <typename Key>
+bool RBNodeBase<Key>::tryRecolor()
+{
+    if(m_left && m_right)
+    {
+        if(m_left->m_color == Colors::red && m_right->m_color == Colors::red)
+        {
+            m_left-> m_color = Colors::black;
+            m_right->m_color = Colors::black;
+            m_color = Colors::red;
+
+            return 1; //success
+        }
+    }
+    return 0; //fail
+}
+
+template <typename Key>
+bool RBNodeBase<Key>::hasRedChilds()
+{
+    return isNodeRed(m_right) || isNodeRed(m_left);
 }
 
 template <typename Key>
@@ -179,11 +179,11 @@ void RBNodeBase<Key>::addNode(RBNode_ptr &root, RBNode_ptr shared_this, Key key)
 {
     if(key > m_key)
     {
-        return addToNode(root, shared_this, key, m_right);
+        addToNode(root, shared_this, key, m_right);
     }
     else
     {
-        return addToNode(root, shared_this, key, m_left);
+        addToNode(root, shared_this, key, m_left);
     }
 }
 

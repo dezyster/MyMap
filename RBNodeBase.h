@@ -19,23 +19,23 @@ public:
 protected:
     Key m_key;
     Colors m_color;
+
     std::weak_ptr<RBNodeBase<Key>> m_parent;
     RBNode_ptr m_left;
     RBNode_ptr m_right;
 
-public:
     virtual void createNewNode(RBNode_ptr, Key, RBNode_ptr&) = 0;
 
-protected:
+private:
     void swapParents(RBNode_ptr&, RBNode_ptr, RBNode_ptr&);
     void moveOtherNode(RBNode_ptr, RBNode_ptr&, RBNode_ptr&);
     void makeRoll(RBNode_ptr&, RBNode_ptr, RBNode_ptr&, RBNode_ptr&);
     void rollRight(RBNode_ptr&, RBNode_ptr);
     void rollLeft(RBNode_ptr&, RBNode_ptr);
-    bool tryRecolor();
     bool isNodeRed(RBNode_ptr);
-    bool hasRedChilds();
     void rollTree(RBNode_ptr&, RBNode_ptr, RBNode_ptr&);
+    bool tryRecolor();
+    bool hasRedChilds();
     void checkRBRules(RBNode_ptr&, RBNode_ptr, RBNode_ptr&);
     void startBalancing(RBNode_ptr&, RBNode_ptr);
     void addToNode(RBNode_ptr&, RBNode_ptr, Key, RBNode_ptr&);
@@ -57,3 +57,4 @@ public:
 };
 
 #include "RBNodeBase.inl"
+
