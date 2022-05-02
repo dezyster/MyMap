@@ -51,6 +51,3 @@ Project also contains files for unit-testing using Google Test framework.
 - mutual_tests.cc // Contains tests for copying Map from RBTree and vice versa
 
 - CMakeLists.txt // needed for cmake 
-
-
-tsdasext
