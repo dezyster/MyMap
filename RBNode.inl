@@ -1,5 +1,5 @@
 template <typename Key>
-void RBNode<Key>::createNewNode(typename RBNodeBase<Key>::RBNode_ptr shared_this, Key key, typename RBNodeBase<Key>::RBNode_ptr &node)
+typename RBNodeBase<Key>::RBNode_ptr RBNode<Key>::getNewNode(typename RBNodeBase<Key>::RBNode_ptr shared_this, Key key)
 {
-    node = std::make_shared<RBNode<Key>>(key, shared_this);
+    return std::make_shared<RBNode<Key>>(key, shared_this);
 }

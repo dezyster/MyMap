@@ -64,9 +64,9 @@ Map<Key, Value>& Map<Key, Value>::operator=(Map<Key, Value> &&other)
 }
 
 template <typename Key, typename Value>
-void Map<Key, Value>::createRoot(Key key)
+typename RBNodeBase<Key>::RBNode_ptr Map<Key, Value>::getRoot(Key key)
 {
-    this->m_root = std::make_shared<MapNode<Key, Value>>(key);
+    return std::make_shared<MapNode<Key, Value>>(key);
 }
 
 template <typename Key, typename Value>

@@ -166,7 +166,7 @@ void RBNodeBase<Key>::addToNode(RBNode_ptr &root, RBNode_ptr shared_this, Key ke
     }
     else
     {
-        createNewNode(shared_this, key, node);
+        node = getNewNode(shared_this, key);
         if(m_parent.lock())
         {
             m_parent.lock()->startBalancing(root, m_parent.lock());
@@ -221,7 +221,7 @@ void RBNodeBase<Key>::getSize(size_t &size) const
 template <typename Key>
 void RBNodeBase<Key>::copyNode(RBNode_ptr &othersPrev, RBNode_ptr nodeToCopyFrom, RBNode_ptr &othersNode)
 {
-    othersPrev->createNewNode(othersPrev, nodeToCopyFrom->getKey(), othersNode);
+    othersNode = othersPrev->getNewNode(othersPrev, nodeToCopyFrom->getKey());
     nodeToCopyFrom->copyElements(othersNode);
 }
 

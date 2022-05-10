@@ -1,7 +1,7 @@
 template <typename Key>
-void RBTree<Key>::createRoot(Key key)
+typename RBNodeBase<Key>::RBNode_ptr RBTree<Key>::getRoot(Key key)
 {
-    this->m_root = std::make_shared<RBNode<Key>>(key);
+    return std::make_shared<RBNode<Key>>(key);
 }
 
 template <typename Key>

@@ -10,7 +10,7 @@ class RBTreeBase
 protected:
     typename RBNodeBase<Key>::RBNode_ptr m_root;
 
-    virtual void createRoot(Key) = 0;
+    virtual typename RBNodeBase<Key>::RBNode_ptr getRoot(Key) = 0;
 
     void copyTree(const RBTreeBase<Key>&);
     void moveTree(RBTreeBase<Key>&&);

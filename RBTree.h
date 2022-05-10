@@ -9,7 +9,7 @@ template <class Key>
 class RBTree: public RBTreeBase<Key>
 {
 protected:
-    virtual void createRoot(Key) override;
+    virtual typename RBNodeBase<Key>::RBNode_ptr getRoot(Key) override;
 
 public:
     RBTree() = default;

@@ -6,7 +6,7 @@ template <class Key>
 class RBNode: public RBNodeBase<Key>
 {
 protected:
-    virtual void createNewNode(typename RBNodeBase<Key>::RBNode_ptr, Key, typename RBNodeBase<Key>::RBNode_ptr&) override;
+    virtual typename RBNodeBase<Key>::RBNode_ptr getNewNode(typename RBNodeBase<Key>::RBNode_ptr, Key) override;
 
 public:
     RBNode(Key key): RBNodeBase<Key>(key){};

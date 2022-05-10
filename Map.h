@@ -9,7 +9,7 @@
 template <class Key, class Value>
 class Map: public RBTreeBase<Key>
 {
-    virtual void createRoot(Key) override;
+    virtual typename RBNodeBase<Key>::RBNode_ptr getRoot(Key) override;
 
     void copyMap(const Map<Key, Value>&);
 

@@ -24,7 +24,7 @@ protected:
     RBNode_ptr m_left;
     RBNode_ptr m_right;
 
-    virtual void createNewNode(RBNode_ptr, Key, RBNode_ptr&) = 0;
+    virtual RBNode_ptr getNewNode(RBNode_ptr, Key) = 0;
 
 private:
     void swapParents(RBNode_ptr&, RBNode_ptr, RBNode_ptr&);

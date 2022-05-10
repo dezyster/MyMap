@@ -1,8 +1,7 @@
 template <typename Key, typename Value>
-void MapNode<Key, Value>::createNewNode(typename RBNodeBase<Key>::RBNode_ptr shared_this, Key key,
-                                        typename RBNodeBase<Key>::RBNode_ptr &node)
+typename RBNodeBase<Key>::RBNode_ptr MapNode<Key, Value>::getNewNode(typename RBNodeBase<Key>::RBNode_ptr shared_this, Key key)
 {
-    node = std::make_shared<MapNode<Key, Value>>(key, shared_this);
+    return std::make_shared<MapNode<Key, Value>>(key, shared_this);
 }
 
 template <typename Key, typename Value>

@@ -4,7 +4,7 @@ void RBTreeBase<Key>::copyTree(const RBTreeBase<Key> &other)
     m_root = nullptr;
     if(other.m_root)
     {
-        createRoot(other.m_root->getKey());
+        m_root = getRoot(other.m_root->getKey());
         other.m_root->copyElements(m_root);
     }
 }
@@ -24,7 +24,7 @@ void RBTreeBase<Key>::addKey(Key key)
     }
     else
     {
-        createRoot(key);
+        m_root = getRoot(key);
     }
 }
 
