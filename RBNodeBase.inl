@@ -27,7 +27,7 @@ void RBNodeBase<Key>::swapParents(RBNode_ptr &root, RBNode_ptr shared_this, RBNo
         }
     }
 
-    if(!m_parent.lock())
+    if(!m_parent.lock()) // need improve this and maybe add swap
     {
         root = nodeToRoll;
     }
